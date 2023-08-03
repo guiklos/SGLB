@@ -49,7 +49,7 @@ function App() {
       <input placeholder='RG' type='Number' onChange={(e) => setMemberRG(Number(e.target.value))}/>
       <input placeholder='Sexo' onChange={(e) => setMemberSex(e.target.value)}/>
       <input placeholder='Contato' onChange={(e) => setMemberContact(e.target.value)}/>
-      <button onClick={onSumbitMember}>Cadastrar membro</button>
+      <button onClick={onSumbitMember}>Cadastrar membros</button>
     </div>
     <div>
       {memberList.map((membro) => (
