@@ -1,5 +1,5 @@
-const CalendarrioEsportivo = () => {
-    return <h1>CalendarrioEsportivo</h1>;
+const CalendarioEsportivo = () => {
+    return <h1>CalendarioEsportivo</h1>;
   };
   
-  export default CalendarrioEsportivo;
+  export default CalendarioEsportivo;
