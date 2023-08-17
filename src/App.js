@@ -4,6 +4,12 @@ import { Auth } from './components/auth';
 import React, { useEffect, useState} from 'react';
 import { db } from './config/firebase'
 import { getDocs, collection, addDoc } from 'firebase/firestore'
+import { Routes, Route } from 'react-router-dom';
+import CalendarioEsportivo from './pages/CalendarioEsportivo';
+import CalendarioEventos from './pages/CalendarioEventos';
+import GerenciarMembros from './pages/GerenciarMembros';
+import Home from './pages/Home';
+import NavBar from './components/NavBar';
 
 function App() {
 
@@ -41,28 +47,15 @@ function App() {
   }
   
   return (
-    <div className='App'> 
-    <Auth />
-    <div>
-      <input placeholder='Nome do membro' onChange={(e) => setMemberName(e.target.value)}/>
-      <input placeholder='Modalidade' onChange={(e) => setMemberModality(e.target.value)}/>
-      <input placeholder='RG' type='Number' onChange={(e) => setMemberRG(Number(e.target.value))}/>
-      <input placeholder='Sexo' onChange={(e) => setMemberSex(e.target.value)}/>
-      <input placeholder='Contato' onChange={(e) => setMemberContact(e.target.value)}/>
-      <button onClick={onSumbitMember}>Cadastrar membros</button>
-    </div>
-    <div>
-      {memberList.map((membro) => (
-        <div>
-          <h1>{membro.Nome}</h1>
-          <p>Modalidade: {membro.Modalidade}</p>
-          <p>RG: {membro.RG}</p>
-          <p>Sexo: {membro.Sexo}</p>
-          <p>Contato: {membro.Contato}</p>
-        </div>
-      ))}
-    </div>
-    </div>
+    <>
+     <NavBar />
+     <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/calendario-esportivo" element={<CalendarioEsportivo />} />
+          <Route path="/calendario-eventos" element={<CalendarioEventos />} />
+          <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
+       </Routes>
+    </>
   );
 }
 
