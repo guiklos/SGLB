@@ -4,6 +4,9 @@ import { Auth } from './components/auth';
 import React, { useEffect, useState} from 'react';
 import { db } from './config/firebase'
 import { getDocs, collection, addDoc } from 'firebase/firestore'
+import { Routes, Route } from 'react-router-dom';
+import CalendarrioEsportivo from './pages/CalendarioEsportivo';
+import Home from './pages/Home';
 
 function App() {
 
@@ -41,7 +44,13 @@ function App() {
   }
   
   return (
+    <>
+     <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/calendario-esportivo" element={<CalendarrioEsportivo />} />
+       </Routes>
     <div className='App'> 
+    
     <Auth />
     <div>
       <input placeholder='Nome do membro' onChange={(e) => setMemberName(e.target.value)}/>
@@ -63,6 +72,7 @@ function App() {
       ))}
     </div>
     </div>
+    </>
   );
 }
 
