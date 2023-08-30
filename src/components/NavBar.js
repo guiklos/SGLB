@@ -17,6 +17,9 @@ const NavBar = () => {
           <li>
              <Link to="/gerenciar-membros">Gerenciar Membros</Link>
           </li>
+          <li>
+             <Link to="/login-screen">LoginScreen</Link>
+          </li>
        </ul>
  </nav>
  );
