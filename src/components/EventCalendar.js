@@ -54,6 +54,21 @@ export default class EventCalendar extends React.Component {
         initialView="dayGridMonth"
         weekends={true}
         events={events}
+        customButtons={{
+          myCustomButton: {
+            text: 'Criar evento esportivo',
+            click: function() {
+            alert('clicked the custom button!');
+      }
+    }
+        }}
+        headerToolbar = {{
+          start: 'title', // will normally be on the left. if RTL, will be on the right
+          center:'myCustomButton',
+          end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
+        }}
+        
+        
         // eventDidMount={(info) => {
         //   return new bootstrap.Popover(info.el, {
         //     title: info.event.title,
@@ -65,6 +80,7 @@ export default class EventCalendar extends React.Component {
         //     html: true,
         //   });
         // }}
+        eventDisplay='block'
         eventClick= {(info) => {
           alert('Event: ' + info.event.title);
           //alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);

@@ -15,7 +15,10 @@ const NavBar = () => {
    }}>
       
    {/* Logo */}
-   <div >
+   <div style={{
+         margin: 10,
+         marginLeft: 100,
+         }} >
       <img style={{
          height: 100,
          width: 100,
@@ -29,6 +32,7 @@ const NavBar = () => {
       <ul
       style={{
          listStyle:'none',
+         paddingTop:30,
          paddingLeft: 100,
          paddingRight:200,
          display: 'flex',
