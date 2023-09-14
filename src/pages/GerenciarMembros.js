@@ -6,7 +6,7 @@ import { db } from "../config/firebase";
 
 function GerenciarMembros() {
 
-const [memberList, setMemberList] = useState ([]);
+  const [memberList, setMemberList] = useState ([]);
   const colecaoDeMembrosRef = collection(db, "membro")
 
   //Data do novo usuario
