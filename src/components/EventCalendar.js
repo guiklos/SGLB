@@ -10,84 +10,67 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 
 export default class EventCalendar extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      eventList: [],
+      colecaoDeEventosRef: collection(db, 'eventos'), // Certifique-se de que 'db' esteja definido em algum lugar
+    };
+  }
+
+   async componentDidMount() {
+    try {
+      const data = await getDocs(this.state.colecaoDeEventosRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        Title: doc.data().NomeEvento,
+        Date: doc.data().DataInicial
+      }));
+      this.setState({ eventList: filteredData, loading: false });
+    } catch (err) {
+      this.setState({ loading: false });
+    }
+  }
+  //   const filteredData = data.docs.map((doc) => ({...doc.data(), NomeEvento: doc.NomeEvento}))
+  //   this.setState(eventList[filteredData])
+  // }
 
   render() {
+    const { eventList, loading } = this.state;
 
-    // const [eventList, setEventList] = useState ([]);
-    // const colecaoDeMembrosRef = collection(db, "membro")
-
-    // useEffect(() => {
-    //   const getEventList = async () => {
-    //     //Ler o BD
-    //     try{
-    //       const data = await getDocs(colecaoDeMembrosRef)
-    //       const filteredData = data.docs.map((doc) => ({...doc.data(), id: doc.id}))
-    //       setEventList(filteredData)
-    //     } catch (err) {
-    //       console.error(err)
-    //     }
-        
-    //   };
-    //   getEventList();
-    // }, [])
-  
-    
-    let events = 
-      [
-        {
-          title: 'Evento 1',
-          date: '2023-09-13',
-      
-        },
-        {
-          title: 'Evento 2',
-          date: '2023-09-14',
-      
-        }
-        // other events here
-      ];
+    const events = eventList.map((event) => ({
+      title: event.NomeEvento,
+      date: event.dataDoEvento, // Certifique-se de que o nome do campo da data seja correto
+    }));
 
     return (
-      <>  
-      <FullCalendar  
-        plugins={[ dayGridPlugin ]}
-        initialView="dayGridMonth"
-        weekends={true}
-        events={events}
-        customButtons={{
-          myCustomButton: {
-            text: 'Criar evento esportivo',
-            click: function() {
-            alert('clicked the custom button!');
-      }
-    }
-        }}
-        headerToolbar = {{
-          start: 'title', // will normally be on the left. if RTL, will be on the right
-          center:'myCustomButton',
-          end: 'today prev,next' // will normally be on the right. if RTL, will be on the left
-        }}
-        
-        
-        // eventDidMount={(info) => {
-        //   return new bootstrap.Popover(info.el, {
-        //     title: info.event.title,
-        //     placement: "auto",
-        //     trigger: "hover",
-        //     customClass: "popoverStyle",
-        //     content:
-        //       "<p>Please subscribe<strong>Bootstrap popover</strong>.</p>",
-        //     html: true,
-        //   });
-        // }}
-        eventDisplay='block'
-        eventClick= {(info) => {
-          alert('Event: ' + info.event.title);
-          //alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-          //alert('View: ' + info.view.type);
-        }}
-/>
-</>
-    )
+      <>
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          weekends={true}
+          events={events}
+          customButtons={{
+            myCustomButton: {
+              text: 'Criar evento esportivo',
+              click: function () {
+                alert('clicked the custom button!');
+              },
+            },
+          }}
+          headerToolbar={{
+            start: 'title',
+            center: 'myCustomButton',
+            end: 'today prev,next',
+          }}
+          eventDisplay="block"
+          eventClick={(info) => {
+            alert('Event: ' + info.event.title);
+          }}
+        />
+      </>
+    );
   }
 }
