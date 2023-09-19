@@ -6,6 +6,7 @@ import CalendarioEsportivo from './pages/CalendarioEsportivo';
 import CalendarioEventos from './pages/CalendarioEventos';
 import GerenciarMembros from './pages/GerenciarMembros';
 import LoginScreen from './pages/LoginScreen';
+import AdicionarEvento from './pages/AdicionarEvento'
 import Home from './pages/Home';
 import NavBar from './components/NavBar';
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/calendario-esportivo" element={<CalendarioEsportivo />} />
           <Route path="/calendario-eventos" element={<CalendarioEventos />} />
           <Route path="/gerenciar-membros" element={<GerenciarMembros />} />
+          <Route path="/adicionar-evento" element={<AdicionarEvento />} />
        </Routes>
     </>
   );

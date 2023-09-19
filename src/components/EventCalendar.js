@@ -2,6 +2,8 @@ import React from 'react'
 import { useEffect, useState } from "react";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { Link } from 'react-router-dom';
+
 
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
@@ -55,9 +57,10 @@ export default class EventCalendar extends React.Component {
           customButtons={{
             myCustomButton: {
               text: 'Criar evento esportivo',
-              click: function () {
-                alert('clicked the custom button!');
-              },
+              click: function() {
+                // Redireciona para a rota "/adicionar-membros" ao clicar no botão
+                window.location.href = "/adicionar-evento";
+              }
             },
           }}
           headerToolbar={{
