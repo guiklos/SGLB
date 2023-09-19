@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { Auth } from "../components/auth";
 import { getDocs, collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import NavBar from "../components/NavBar";
 
 function GerenciarMembros() {
 
-const [memberList, setMemberList] = useState ([]);
+  const [memberList, setMemberList] = useState ([]);
   const colecaoDeMembrosRef = collection(db, "membro")
 
   //Data do novo usuario
