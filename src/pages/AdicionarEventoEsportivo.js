@@ -13,7 +13,7 @@ function AdicionarEventoEsportivo() {
 
   const onSumbitEvent = async () => {
     try{
-    await addDoc(colecaoDeEventosEsportivosRef, {NomeEvento: eventName, dataDoEvento: eventDate})
+    await addDoc(colecaoDeEventosEsportivosRef, {NomeEventoEsportivo: eventName, dataEventoEsportivo: eventDate})
     } catch(err){
       console.error(err)
     }

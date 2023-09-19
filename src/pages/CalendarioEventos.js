@@ -39,7 +39,7 @@ function CalendarioEventos() {
             text: "Criar evento",
             click: function () {
               // Redireciona para a rota "/adicionar-membros" ao clicar no botão
-              window.location.href = "/adicionar-evento";
+              window.location.href = "/adicionar-evento-esportivo";
             },
           },
         }}

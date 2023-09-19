@@ -28,7 +28,7 @@ export default class EventCalendar extends React.Component {
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         Title: doc.data().NomeEvento,
-        Date: doc.data().DataInicial
+        Date: doc.data().dataDoEvento
       }));
       this.setState({ eventList: filteredData, loading: false });
     } catch (err) {
@@ -59,7 +59,7 @@ export default class EventCalendar extends React.Component {
               text: 'Criar evento esportivo',
               click: function() {
                 // Redireciona para a rota "/adicionar-membros" ao clicar no botão
-                window.location.href = "/adicionar-evento-esportivo";
+                window.location.href = "/adicionar-evento";
               }
             },
           }}
