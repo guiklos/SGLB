@@ -3,9 +3,9 @@ import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 
-function AdicionarEvento() {
+function AdicionarEventoEsportivo() {
   // const [eventList, setEventList] = useState ([]);
-  const colecaoDeEventosRef = collection(db, "eventos")
+  const colecaoDeEventosEsportivosRef = collection(db, "eventosEsportivos")
 
   //Data do novo usuario
   const [eventName, setEventName] = useState('')
@@ -13,7 +13,7 @@ function AdicionarEvento() {
 
   const onSumbitEvent = async () => {
     try{
-    await addDoc(colecaoDeEventosRef, {NomeEvento: eventName, dataDoEvento: eventDate})
+    await addDoc(colecaoDeEventosEsportivosRef, {NomeEvento: eventName, dataDoEvento: eventDate})
     } catch(err){
       console.error(err)
     }
@@ -21,7 +21,7 @@ function AdicionarEvento() {
 
   return (
     <div className='Membros'> 
-    <div><h1>ADICIONAR EVENTO</h1></div>
+    <div><h1>ADICIONAR EVENTO ESPORTIVO</h1></div>
     <div>
       
       <input placeholder='Nome do evento' onChange={(e) => setEventName(e.target.value)}/>
@@ -34,4 +34,4 @@ function AdicionarEvento() {
 
 }
 
-export default AdicionarEvento;
+export default AdicionarEventoEsportivo;

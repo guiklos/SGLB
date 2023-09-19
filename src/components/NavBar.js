@@ -64,11 +64,6 @@ const NavBar = () => {
             <Link style={{color: 'black'}} to="/login-screen">LoginScreen</Link>
          </li>
          </div>
-         <div style={{paddingLeft: 20,paddingRight:20 }}> 
-         <li style={{backgroundColor: 'grey', padding: 10}}>
-            <Link style={{color: 'black'}} to="/adicionar-evento">AdicionarEvento</Link>
-         </li>
-         </div>
       </ul>
 </nav>
 </div>
