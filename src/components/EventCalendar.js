@@ -18,17 +18,18 @@ export default class EventCalendar extends React.Component {
     this.state = {
       loading: true,
       eventList: [],
-      colecaoDeEventosRef: collection(db, 'eventos'), // Certifique-se de que 'db' esteja definido em algum lugar
+      colecaoDeEventosEsportivosRef: collection(db, 'eventosEsportivos'), // Certifique-se de que 'db' esteja definido em algum lugar
     };
   }
 
    async componentDidMount() {
     try {
-      const data = await getDocs(this.state.colecaoDeEventosRef);
+      const data = await getDocs(this.state.colecaoDeEventosEsportivosRef);
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
-        Title: doc.data().NomeEvento,
-        Date: doc.data().dataDoEvento
+        Title: doc.data().NomeEventoEsportivo,
+        Date: doc.data().dataEventoEsportivo,
+        Modalidade: doc.data().Modalidade,
       }));
       this.setState({ eventList: filteredData, loading: false });
     } catch (err) {
@@ -43,8 +44,9 @@ export default class EventCalendar extends React.Component {
     const { eventList, loading } = this.state;
 
     const events = eventList.map((event) => ({
-      title: event.NomeEvento,
-      date: event.dataDoEvento, // Certifique-se de que o nome do campo da data seja correto
+      title: event.NomeEventoEsportivo,
+      date: event.dataEventoEsportivo,
+      modalidade: event.Modalidade, // Certifique-se de que o nome do campo da data seja correto
     }));
 
     return (
@@ -59,7 +61,7 @@ export default class EventCalendar extends React.Component {
               text: 'Criar evento esportivo',
               click: function() {
                 // Redireciona para a rota "/adicionar-membros" ao clicar no botão
-                window.location.href = "/adicionar-evento";
+                window.location.href = "/adicionar-evento-esportivo";
               }
             },
           }}
@@ -71,6 +73,7 @@ export default class EventCalendar extends React.Component {
           eventDisplay="block"
           eventClick={(info) => {
             alert('Event: ' + info.event.title);
+            alert('Modalidade: ' + info.event.extendedProps.modalidade);
           }}
         />
       </>

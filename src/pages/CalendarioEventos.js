@@ -6,16 +6,16 @@ import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 
 function CalendarioEventos() {
   const [eventList, setEventList] = useState([]);
-  const colecaoDeEventosEsportivosRef = collection(db, "eventosEsportivos");
+  const colecaoDeEventosRef = collection(db, "eventos");
 
   useEffect(() => {
     const getEventList = async () => {
       // Ler o BD
       try {
-        const data = await getDocs(colecaoDeEventosEsportivosRef);
+        const data = await getDocs(colecaoDeEventosRef);
         const filteredData = data.docs.map((doc) => ({
-          title: doc.data().NomeEventoEsportivo,
-          date: doc.data().dataEventoEsportivo,
+          title: doc.data().NomeEvento,
+          date: doc.data().dataDoEvento,
           id: doc.id,
         }));
         setEventList(filteredData);
@@ -39,7 +39,7 @@ function CalendarioEventos() {
             text: "Criar evento",
             click: function () {
               // Redireciona para a rota "/adicionar-membros" ao clicar no botão
-              window.location.href = "/adicionar-evento-esportivo";
+              window.location.href = "/adicionar-evento";
             },
           },
         }}
