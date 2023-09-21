@@ -11,8 +11,13 @@ import Home from './pages/Home';
 import NavBar from './components/NavBar';
 import AdicionarEventoEsportivo from './pages/AdicionarEventoEsportivo';
 import AdicionarMembro from './pages/AdicionarMembro';
+import EventoDetalhes from './pages/EventoDetalhes';
+import EventCalendar from './components/EventCalendar';
+
 
 function App() {
+
+  const eventoId = {}
 
   return (
     <>
@@ -26,6 +31,10 @@ function App() {
           <Route path="/adicionar-evento" element={<AdicionarEvento />} />
           <Route path="/adicionar-evento-esportivo" element={<AdicionarEventoEsportivo />} />
           <Route path="/adicionar-membro" element={<AdicionarMembro />} />
+          <Route exact path="/" component={EventCalendar} />
+          <Route path={`/evento-detalhes/${eventoId}`} component={EventoDetalhes} /> 
+
+
        </Routes>
     </>
   );

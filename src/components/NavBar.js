@@ -66,7 +66,7 @@ const NavBar = () => {
          </div>
          <div style={{paddingLeft: 20,paddingRight:20 }}> 
          <li style={{backgroundColor: 'grey', padding: 10}}>
-            <Link style={{color: 'black'}} to="/adicionar-membro">AdicionarMembro</Link>
+            <Link style={{color: 'black'}} to="/evento-detalhes">Detalhes Evento</Link>
          </li>
          </div>
       </ul>

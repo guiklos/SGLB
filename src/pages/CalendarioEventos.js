@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../config/firebase";
 import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import dayGridPlugin from "@fullcalendar/daygrid"; //plugin!
 
 function CalendarioEventos() {
   const [eventList, setEventList] = useState([]);
@@ -33,12 +33,11 @@ function CalendarioEventos() {
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
         weekends={true}
-        events={eventList} // Corrigido para eventList
+        events={eventList}
         customButtons={{
           myCustomButton: {
             text: "Criar evento",
             click: function () {
-              // Redireciona para a rota "/adicionar-membros" ao clicar no botão
               window.location.href = "/adicionar-evento";
             },
           },

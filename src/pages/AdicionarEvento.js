@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { useNavigate } from "react-router-dom";
 
 function AdicionarEvento() {
   // const [eventList, setEventList] = useState ([]);
+   const Navigate = useNavigate();
   const colecaoDeEventosRef = collection(db, "eventos")
 
   //Data do novo usuario
@@ -17,6 +19,7 @@ function AdicionarEvento() {
     } catch(err){
       console.error(err)
     }
+    Navigate('/calendario-eventos')
   }
 
   return (

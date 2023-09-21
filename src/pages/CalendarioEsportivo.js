@@ -1,6 +1,7 @@
 import EventCalendar from "../components/EventCalendar";
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 
+
 const CalendarioEsportivo = () => {
 
     return(
