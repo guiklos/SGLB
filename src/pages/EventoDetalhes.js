@@ -28,7 +28,6 @@ function EventoDetalhes() {
     
     <div>
       <h2>Detalhes do Evento {eventoId}</h2>
-      {/* Exiba os detalhes do evento com base no eventoId */}
     </div>
   );
 }

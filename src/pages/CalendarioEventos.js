@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../config/firebase";
 import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid"; //plugin!
+import dayGridPlugin from "@fullcalendar/daygrid"; //plugin
 
 function CalendarioEventos() {
   const [eventList, setEventList] = useState([]);
@@ -17,6 +17,9 @@ function CalendarioEventos() {
           title: doc.data().NomeEvento,
           date: doc.data().dataDoEvento,
           id: doc.id,
+          local: doc.data().Local,
+          horario: doc.data().Horário,
+          descricao: doc.data().Descrição,
         }));
         setEventList(filteredData);
       } catch (err) {
@@ -28,7 +31,7 @@ function CalendarioEventos() {
 
   return (
     <div className="Eventos">
-      <h2>CalendarioEventos</h2>;
+      <h2>CalendarioEventos</h2>
       <FullCalendar
         plugins={[dayGridPlugin]}
         initialView="dayGridMonth"
@@ -49,17 +52,22 @@ function CalendarioEventos() {
         }}
         eventDisplay="block"
         eventClick={(info) => {
-          alert("Event: " + info.event.title);
+          alert(
+            "Event: " + info.event.title +
+            "\nLocal: " + info.event.extendedProps.local +
+            "\nHorário: " + info.event.extendedProps.horario +
+            "\nDescrição: " + info.event.extendedProps.descricao
+          );
         }}
       />
-      {/* <div>
-        {eventList.map((eventos) => (
-          <div key={eventos.id}>
-            <h1>{eventos.title}</h1>
-            <p>Data do evento: {eventos.date}</p>
+      <div>
+        {eventList.map((event) => (
+          <div key={event.id}>
+            <h1>{event.title}</h1>
+            <p>Data do evento: {event.date}</p>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }

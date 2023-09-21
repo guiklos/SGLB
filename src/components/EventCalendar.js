@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid' //plugin
+import dayGridPlugin from '@fullcalendar/daygrid'
 import * as bootstrap from 'bootstrap'
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -30,7 +30,10 @@ export default class EventCalendar extends React.Component {
         Title: doc.data().NomeEventoEsportivo,
         Date: doc.data().dataEventoEsportivo,
         Modalidade: doc.data().Modalidade,
-        id: doc.id
+        id: doc.id,
+        Adversário: doc.data().Adversario,
+        Arbitragem: doc.data().Arbitragem,
+        Coordenador: doc.data().Coordenador,
       }));
       this.setState({ eventList: filteredData, loading: false });
     } catch (err) {
@@ -49,6 +52,9 @@ export default class EventCalendar extends React.Component {
       date: event.dataEventoEsportivo,
       modalidade: event.Modalidade, 
       id: event.id,
+      adversário: event.Adversario,
+      arbitragem: event.Arbitragem,
+      coordenador: event.Coordenador,
     }));
 
     return (
@@ -73,14 +79,21 @@ export default class EventCalendar extends React.Component {
           }}
           eventDisplay="block"
           eventClick={(info) => {
-           alert("Event: " + info.event.title + "\nSDate: " + info.event.date + "\nModalidade: " + info.event.modalidade);
+  const event = info.event;
+  alert(
+    "Event: " + event.title + 
+    "\nModalidade: " + event.extendedProps.modalidade + 
+    "\nAdversário: " + event.extendedProps.adversário + 
+    "\nArbitragem: " + event.extendedProps.arbitragem + 
+    "\nCoordenador: " + event.extendedProps.coordenador
+  );
+
           // const eventoId = info.event.id;
           // const urlEventoDetalhes = `/evento-detalhes/${eventoId}`;
           // //const urlEventoDetalhes = `/evento-detalhes/${eventoId}`;
           // <Link to={`/evento-detalhes/${eventoId}`}>Ver detalhes do evento</Link>
           // window.location.href = urlEventoDetalhes;
-          
-  // Redirecione o usuário para a página de detalhes do evento.
+
   
 }}
 
